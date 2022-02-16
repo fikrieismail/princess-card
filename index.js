@@ -416,7 +416,7 @@ function countdown() {
 		hour = minute * 60,
 		day = hour * 24;
 
-	const countDown = new Date(1645009200000).getTime();
+	const countDown = new Date(1645113600000).getTime();
 
 	const x = setInterval(function() {
 		const now = new Date().getTime(),
