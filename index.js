@@ -4,41 +4,44 @@ var w = (c.width = window.innerWidth),
 	hw = w / 2, // half-width
 	hh = h / 2,
 	opts = {
-		strings: ["HAPPY", "BIRTHDAY", "ANNUR SHAMILA!"],
-		charSize: 60,
-		charSpacing: 65,
-		lineHeight: 60,
+		strings: ["HAPPY", "BIRTHDAY", "ANNUR", "SHAMILA!"],
+		charSize: 50,
+		charSpacing: 50,
+		lineHeight: 55,
 
 		cx: w / 2,
 		cy: h / 2,
 
 		fireworkPrevPoints: 10,
 		fireworkBaseLineWidth: 5,
-		fireworkAddedLineWidth: 8,
-		fireworkSpawnTime: 200,
-		fireworkBaseReachTime: 30,
-		fireworkAddedReachTime: 30,
+		fireworkAddedLineWidth: 5,
+		fireworkSpawnTime: 500,
+		fireworkBaseReachTime: 50,
+		fireworkAddedReachTime: 50,
 		fireworkCircleBaseSize: 20,
 		fireworkCircleAddedSize: 10,
 		fireworkCircleBaseTime: 30,
 		fireworkCircleAddedTime: 30,
 		fireworkCircleFadeBaseTime: 10,
 		fireworkCircleFadeAddedTime: 5,
-		fireworkBaseShards: 5,
-		fireworkAddedShards: 5,
+		fireworkBaseShards: 20,
+		fireworkAddedShards: 20,
 		fireworkShardPrevPoints: 3,
 		fireworkShardBaseVel: 4,
 		fireworkShardAddedVel: 2,
 		fireworkShardBaseSize: 3,
 		fireworkShardAddedSize: 3,
+
 		gravity: 0.1,
 		upFlow: -0.1,
-		letterContemplatingWaitTime: 360,
+
+		letterContemplatingWaitTime: 800,
+
 		balloonSpawnTime: 20,
 		balloonBaseInflateTime: 10,
 		balloonAddedInflateTime: 10,
-		balloonBaseSize: 20,
-		balloonAddedSize: 20,
+		balloonBaseSize: 30,
+		balloonAddedSize: 30,
 		balloonBaseVel: 0.4,
 		balloonAddedVel: 0.4,
 		balloonBaseRadian: -(Math.PI / 2 - 0.5),
@@ -47,13 +50,18 @@ var w = (c.width = window.innerWidth),
 	calc = {
 		totalWidth:
 			opts.charSpacing *
-			Math.max(opts.strings[0].length, opts.strings[1].length),
+			Math.max(
+				opts.strings[0].length,
+				opts.strings[1].length,
+				opts.strings[2].length,
+				opts.strings[3].length
+			),
 	},
 	Tau = Math.PI * 2,
 	TauQuarter = Tau / 4,
 	letters = [];
 
-ctx.font = opts.charSize + "px Verdana";
+ctx.font = opts.charSize + "px Righteous";
 
 function Letter(char, x, y) {
 	this.char = char;
@@ -392,8 +400,6 @@ for (var i = 0; i < opts.strings.length; ++i) {
 	}
 }
 
-anim();
-
 window.addEventListener("resize", function () {
 	w = c.width = window.innerWidth;
 	h = c.height = window.innerHeight;
@@ -401,5 +407,48 @@ window.addEventListener("resize", function () {
 	hw = w / 2;
 	hh = h / 2;
 
-	ctx.font = opts.charSize + "px Verdana";
+	ctx.font = opts.charSize + "px Righteous";
+});
+
+function countdown() {
+	const second = 1000,
+		minute = second * 60,
+		hour = minute * 60,
+		day = hour * 24;
+
+	const countDown = new Date(1645009200000).getTime();
+
+	const x = setInterval(function() {
+		const now = new Date().getTime(),
+			  distance = countDown - now;
+
+		// document.getElementById("days").innerText = Math.floor(distance / (day)),
+		document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
+		document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+		document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
+
+		if (distance < 0) {
+			clearInterval(x);
+
+			document.title = "🎉 Happy Birthday Annur Shamila! 🎉";
+			document.getElementById("wrapper").style.display = "none";
+
+			anim();
+		}
+	}, 0);
+}
+
+countdown();
+
+document.getElementById("confetti").addEventListener("click", function () {
+	function randomInRange(min, max) {
+		return Math.random() * (max - min) + min;
+	}
+
+	confetti({
+		angle: randomInRange(55, 125),
+		spread: randomInRange(50, 70),
+		particleCount: randomInRange(50, 100),
+		origin: { y: 0.6 }
+	});
 });

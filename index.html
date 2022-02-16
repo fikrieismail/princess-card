@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎉 Happy Birthday Annur Shamila! 🎉</title>
-    <style>
-        body {
-            overflow: hidden;
-        }
-
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-    </style>
+    <title>🎊 Birthday Countdown 🎊</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 </head>
 <body>
+    <main id="wrapper">
+        <div class="container">
+            <h1 id="headline">🎂 Annur Shamila Birthday 🎂</h1>
+            <div id="countdown">
+                <ul>
+                    <!-- <li><span id="days"></span>days</li> -->
+                    <li><span id="hours"></span>Hours</li>
+                    <li><span id="minutes"></span>Minutes</li>
+                    <li><span id="seconds"></span>Seconds</li>
+                </ul>
+            </div>
+            <button type="button" id="confetti">POP ME! 🎉</button>
+        </div>
+    </main>
     <canvas id="c"></canvas>
 </body>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="./index.js"></script>
 </html>

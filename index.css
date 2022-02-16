@@ -1,0 +1,87 @@
+:root {
+    --smaller: .75;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    background: #111;
+}
+
+main {
+    align-items: center;
+    background-color: #111;
+    display: flex;
+    font-family: "Righteous", sans-serif;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
+    z-index: 1;
+}
+
+.container {
+    color: #fff;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    font-weight: normal;
+    letter-spacing: .125rem;
+    text-transform: uppercase;
+}
+
+li {
+    display: inline-block;
+    font-size: 1.5em;
+    list-style-type: none;
+    padding: 1em;
+    text-transform: uppercase;
+}
+
+li span {
+    display: block;
+    font-size: 5rem;
+}
+
+@media all and (max-width: 768px) {
+    h1 {
+        font-size: calc(1.5rem * var(--smaller));
+    }
+
+    li {
+        font-size: calc(1.125rem * var(--smaller));
+    }
+
+    li span {
+        font-size: calc(3.375rem * var(--smaller));
+    }
+}
+
+button {
+    color: #fff;
+    font-family: "Righteous", sans-serif;
+    font-size: 1.5em;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
